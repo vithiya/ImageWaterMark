@@ -19,9 +19,9 @@ def upload():
             messagebox.showinfo(title='Warning!',
                                 message='The uploaded image is larger than the canvas. It will be resized.')
 
-        #img = ImageTk.PhotoImage(im)
-        # canvas.img = img
-        # canvas.create_image(WIDTH / 2, HEIGHT / 2, image=img, anchor=CENTER)
+        img = ImageTk.PhotoImage(im)
+        canvas.img = img
+        canvas.create_image(WIDTH / 2, HEIGHT / 2, image=img, anchor=CENTER)
 
         txt = Image.new('RGBA', im.size, (255, 255, 255, 0))
 
@@ -37,13 +37,15 @@ def upload():
         #txt = txt.rotate(45)
 
         out_image = Image.alpha_composite(im, txt)
-        img = ImageTk.PhotoImage(out_image)
-        canvas.img = img
-        canvas.create_image(WIDTH / 2, HEIGHT / 2, image=img, anchor=CENTER)
+        # img = ImageTk.PhotoImage(out_image)
+        # canvas.img = img
+        # canvas.create_image(WIDTH / 2, HEIGHT / 2, image=img, anchor=CENTER)
+        out_image.show()
 
     except UnidentifiedImageError:
         messagebox.showinfo(title='Upload Error',
                             message='Please select valid image')
+
 
 
 window=Tk()
@@ -55,9 +57,6 @@ canvas.pack()
 
 button=Button(text="Upload Image",command=upload)
 button.pack()
-
-
-
 
 
 
